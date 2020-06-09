@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/login/123">11111</router-link>
+        <router-view></router-view>
+    </div>  
+    <script> 
+    /**
+        1. git  版本控制工具
+    
+         1. 初始化  git  init
+          一个无关的工程 
+          一个git       
+                        ------ 让两个东西有关联
+                               
+        2.开始让git 开始管理 工程!
+
+
+    */
+
+    //  uni-app
+        var login={
+            props:['id'],
+            template:"<h1>heloo{{id}}</h1>"
+        }
+         const routerObj = new VueRouter({
+                    routes:[
+                        {path:'/login/:id',component:login,props:true}
+                        ]
+         })
+     
+        new Vue({
+            el:"#app",
+            data:{
+                msg1:"123",
+                msg2:"234",
+                a:true,
+                list:[{name:'zs',age:10},
+                     {name:'ls',age:19},
+                        {name:'ww',age:20}
+                ]
+            },
+            methods: {
+              show(a){
+                console.log(a)
+              }  
+            },
+            router:routerObj
+        })
+            //  不想 dom操作!  
+            // mvvm    
+            
+           var  a=111; 
+         `${a}你好`   
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+        <div id="app">
+
+<input type="text"   :value="msg"    @input="show">
+<h1>{{msg}}</h1>
+            <h1>hello</h1>
+            <my-div  
+            v-model="msg"
+
+            @func="show"  
+            :title="msg">world</my-div>
+
+        </div>
+        <template  id="mydiv1">
+            <div style="border:1px solid red;width:400px;height: 100px;">
+                <input type="text" :value="value"  @input="$emit('input',$event.target.value)">
+                <a href="">1111</a>
+                <h1>hello<slot></slot></h1>  
+                <h2>nihao</h2>
+                <p>afasdalaksdualska;sldfjakl</p>
+            </div>
+        </template>
+        <script>
+            
+
+
+
+var  obj={count:1}
+var myd={
+                template:"#mydiv1",
+               
+                data(){
+                    return {count:1}
+                },
+                props:['title','value'],
+                methods:{
+                    add(){
+                        console.log(this.title)
+                       // this.count++
+                    },
+                    // f1(){
+                    //    this.$emit('func',1,2,4,5)
+                    // }
+                }
+            }
+            Vue.component('myDiv',myd)
+
+
+            new Vue({
+                el:"#app",
+                data: {
+                  msg:1111
+                },
+                methods: {      
+                  show(e){
+                      console.log('11111', '')
+                    // this.msg=e.target.value;
+                  }  
+                },
+                components:{
+                    mydivv:{
+                        template:"<h1>111</h1>"
+                    }
+                }
+            })
+        </script>
+</body>
+</html>

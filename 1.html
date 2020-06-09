@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;  /*这是不显示*/
+        }
+    </style>
+</head>
+<body>
+        <div id="app">  
+            <h1  :class="{hight:a}" v-text="1+2"></h1>
+            <h1 v-bin="1+1"></h1>
+
+
+            <h1>{{price}}</h1>{{price}}{{price}}{{price}}{{price}}
+            </div>
+        <script>
+//  使用前端框架就是为了前后端分离
+//  渐进式  降低开发难度
+//  mvvm  设计思想    m    v     vm (Vue实例)
+// vue不允许 body或者html标签作为 实例
+          
+            Vue.directive('focus',{
+                // 使用这个指令的标签
+                // 什么时候产生这个指令的效果
+                   // 这是 使用指令的标签在被渲染到
+                   // dom上的时候触发的生命周期函数 
+                inserted:function(el){
+                    // 写上原生的js代码
+                    el.focus()  
+                }
+            })
+
+
+            new Vue({
+                el:"#app",
+                data:{
+                   a:true,
+                    number:1,
+                    price:1000,
+                    name:'<h1>zs</h1>',
+                    age:19,
+                    list:[
+                    {age:19,name:"zs1"},
+                    {age:20,name:"zs2"},
+                    {age:21,name:"zs3"}
+                     ]
+                },
+                methods: {
+                    show(){}
+                },
+                directives:{
+                    bin:{
+                        bind:function(el,bind,vnode){
+                            // 这个 bind.value 就是用来接受 自定义指令的传值
+                            console.log(bind.value)
+                            el.innerHTML=bind.value
+                        },
+                        inserted:function(){
+                            
+                        }  
+                    }
+                },
+                computed: {  //  计算属性的结果会缓存  如果其构成部分没有改变
+                    //  这个结果不会重新计算  
+                    price:{
+                        get:function(){
+                        // code..
+                        return 1000 * this.number;  // 5000
+                        },
+                        set:function(newValue){  // 9000
+                          //  1000 * this.number
+                        }
+                    }
+                },
+                watch: {
+                    // 侦听器  监听数据本身的改变而做出响应的操作
+                    number:function(newValue,OldValue){
+
+                    }
+                },
+            })
+var  a =1;
+console.log(`${a}你好`)
+
+        </script>
+</body>
+</html>
